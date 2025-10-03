@@ -1,0 +1,1 @@
+ In this app we will use a Python web framework that allows us to build complete web apps using Python and only Python. No need for HTML, CSS, or Javascipt. This is made possible by Justpy. Let's move on to the next section.
