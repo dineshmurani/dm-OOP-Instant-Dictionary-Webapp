@@ -3,6 +3,8 @@ import justpy as jp
 class Dictionary():
     path = "/dictionary"
 
+
+    @classmethod
     def serve(self):
         wp = jp.QuasarPage(tailwind=True)
         div = jp.Div(a=wp, classes="bg-grey-200 h-screen")
