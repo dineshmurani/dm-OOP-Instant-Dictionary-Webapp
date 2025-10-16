@@ -25,7 +25,6 @@ class Dictionary():
                                     "focus:border-purple-500 "
                                     "py-2 px-4")
         input_box.on('input', cls.get_definition)
-
         print(cls, req)
 
         return wp

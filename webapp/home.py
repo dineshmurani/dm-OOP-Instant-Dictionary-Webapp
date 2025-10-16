@@ -3,13 +3,37 @@ import justpy as jp
 class Home():
     path = "/"
 
-    def serve(self):
+    @classmethod
+    def serve(cls, req):
         wp = jp.QuasarPage(tailwind=True)
-        div = jp.Div(a=wp, classes="bg-grey-200 h-screen")
+
+        layout = jp.QLayout(a=wp, view="hHh lpR fFf")
+        header = jp.QHeader(a=layout)
+        toolbar = jp.QToolbar(a=header)
+
+        drawer = jp.QDrawer(a=layout, show_if_above=True, v_mode="left", bordered=True)
+
+        jp.QBtn(a=toolbar, dense=True, flat=True, round=True, icon="menu",
+                click=cls.move_drawer, drawer =drawer)
+        jp.QToolbarTitle(a=toolbar, text="Instant Dictionary")
+
+        container = jp.QPageContainer(a=layout)
+
+        div = jp.Div(a=container, classes="bg-grey-200 h-screen p-2")
         jp.Div(a=div, text="This is the Home page!", classes="text-4xl m-2")
         jp.Div(a=div, text="""
             The "About" page for Amazon refers to the company's online presence, which is the world's largest online retailer and a technology company known for services like Amazon Prime and Alexa. Alternatively, "The Amazon" can refer to the Amazon rainforest, the world's largest tropical rainforest, which is home to immense biodiversity and plays a crucial role in regulating the global climate, as detailed on sites like the World Wildlife Fund (WWF) and The Nature Conservancy. """,
                classes="text-lg")
         return wp
+
+    @staticmethod
+    def move_drawer(widget, msg):
+        if widget.drawer.value:
+            widget.drawer.value = False
+        else:
+            widget.drawer.value = True
+
+
+
 
 
