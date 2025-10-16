@@ -1,4 +1,5 @@
 import justpy as jp
+import definition
 
 class Dictionary():
     path = "/dictionary"
@@ -12,7 +13,7 @@ class Dictionary():
         jp.Div(a=div, text="Get the definition of any English word instantly as you type.", classes='text-lg')
 
         input_div = jp.Div(a=div, classes="grid grid-cols-2")
-        jp.Input(a=input_div, placeholder="Type in a word here...", classes="m-2 bg-gray-100 "
+        input_box = jp.Input(a=input_div, placeholder="Type in a word here...", classes="m-2 bg-gray-100 "
                                                                       "border-2 border-gray-200 "
                                                                       "rounded w-64 focus:bg-white "
                                                                       "focus:outline-none "
@@ -22,7 +23,7 @@ class Dictionary():
         jp.Button(a=input_div, text="Get Definition", classes="border-2 "
                                                               "text-gray-500",
                   click=cls.get_definition,
-                  outputdiv=output_div)
+                  outputdiv=output_div, inputbox=input_box)
 
         print(cls, req)
 
@@ -30,6 +31,7 @@ class Dictionary():
 
     @staticmethod
     def get_definition(widget, msg):
-        widget.outputdiv.text = "something was displayed!"
+        defined = definition.Definition(widget.inputbox.value).get()
+        widget.outputdiv.text = " ".join(defined)
 
 
